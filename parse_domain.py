@@ -13,13 +13,11 @@ def parse_domain(url, levels=2):
     parsed = urlparse(url)
     hostname = getattr(parsed,'netloc',url)
     
-    def generate_partial_domains(hostname):
-        sections = hostname.split(".")
-        result = ""
-        for section in reversed(sections):
-            result = "." + section + result
-            yield result
-    partial_domains = list(generate_partial_domains(hostname))
+    partial_domains = []
+    partial_domain = ""
+    for section in reversed(hostname.split(".")):
+        partial_domain = "." + section + partial_domain
+        partial_domains.append(partial_domain)
 
     tld_length = 1
     for idx, item in enumerate(partial_domains):
