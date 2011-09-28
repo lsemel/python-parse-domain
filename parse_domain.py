@@ -18,7 +18,7 @@ def parse_domain(url, levels=2):
     for section in reversed(hostname.split(".")):
         partial_domain = "." + section + partial_domain
         partial_domains.append(partial_domain)
-
+        
     tld_length = 1
     for idx, item in enumerate(partial_domains):
         if item in tlds:
@@ -1571,7 +1571,7 @@ tlds = set((
 
 
 if __name__=="__main__":
-    for item in ['http://something.unknown','http://a.b.c.something.unknown','http://booger','http://google.com','http://a.b.c.d.e.google.com','http://something.uk','http://aa.bb.cc.dd.ee.ff.gg.guardian.co.uk','http://guardian.co.uk','http://www.guardian.co.uk','http://www.google.com','http://wikipedia.org','http://www.wikipedia.org','',None,'whatever']:
+    for item in ['http://something.unknown','http://a.b.c.something.unknown','http://something','http://google.com','http://a.b.c.d.e.google.com','http://something.uk','http://aa.bb.cc.dd.ee.ff.gg.guardian.co.uk','http://guardian.co.uk','http://www.guardian.co.uk','http://www.google.com','http://wikipedia.org','http://www.wikipedia.org','',None,'whatever']:
         for level in range(0,5):
             print "url=%s, levels=%s => %s" % (item, level, parse_domain(item,level))
 
