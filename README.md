@@ -3,9 +3,13 @@ python-parse-domain
 
 So, you have a bunch of URLs and want to display human-friendly domains from them.  Extracting the domain isn't as easy as splitting on dots, because of longer international TLDs.   
 
-This module has a list of TLDs, can correctly extract domains from URLs, and allows you to specify the number of levels of the domain you want.
+This module contains list of these TLDs so they can be extracted correctly, and allows you to specify the number of levels of the domain you want.
 
     >>> from parse_domain import parse_domain
+    >>> parse_domain('http://google.com',1)
+    'com'
+    >>> parse_domain('http://google.com',2)
+    'google.com'
     >>> parse_domain('http://guardian.co.uk',1)
     'co.uk'
     >>> parse_domain('http://guardian.co.uk',2)
