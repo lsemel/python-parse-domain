@@ -19,17 +19,22 @@ def parse_domain(url, levels=2):
         partial_domain = "." + section + partial_domain
         partial_domains.append(partial_domain)
         
-    tld_length = 1
+    # Find the longest matching TLD, recording its index
+    tld_idx = 0
     for idx, item in enumerate(partial_domains):
         if item in tlds:
-            tld_length = idx + 1
-
-    for idx, item in enumerate(partial_domains):
-        if tld_length + levels - 1 == idx + 1:
-            break         
+            tld_idx = idx
+        
+    # Add the desired number of levels to the tld index,
+    # counting the TLD itself as the first level
+    try:
+        domain = partial_domains[tld_idx + levels - 1]
+    except IndexError:
+        domain = partial_domains[-1]
     
-    return item[1:] or None
-    
+    # Remove the initial dot
+    return domain[1:]
+        
 tlds = set((
     '.2000.hu',
     '.ab.ca',
